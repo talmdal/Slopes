@@ -18,7 +18,7 @@
 
     <build>
         <defaultGoal>clean install</defaultGoal>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <targetPath>.</targetPath>

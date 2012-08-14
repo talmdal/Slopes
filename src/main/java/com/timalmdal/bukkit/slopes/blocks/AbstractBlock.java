@@ -62,14 +62,14 @@ public abstract class AbstractBlock extends GenericCustomBlock implements Direct
 	public abstract String[] getRecipe();
 
 	/**
-	 * @return the direction the stairs ascend towards
+	 * @return the direction the stairs descend towards
 	 */
 	public BlockFace getDescendingDirection() {
 		return blockFacing;
 	}
 
 	/**
-	 * @return the direction the stairs descend towards
+	 * @return the direction the stairs ascend towards
 	 */
 	public BlockFace getAscendingDirection() {
 		return getDescendingDirection().getOppositeFace();
