@@ -36,16 +36,16 @@ import org.getspout.spoutapi.SpoutManager;
 public enum FileUtilities {
 	;
 
-	public static File getTempResourceFile(final String fileName) {
-		final File tempDirectory = new File(Spout.getInstance().getDataFolder(), "temp");
+	public static File getTempResourceFile(final JavaPlugin plugin, final String fileName) {
+		final File tempDirectory = new File(Spout.getInstance().getDataFolder(), "temp/" + plugin.getName());
 		if (!tempDirectory.exists()) {
 			tempDirectory.mkdirs();
 		}
 		return new File(tempDirectory, fileName);
 	}
 
-	public static File loadResource(final String resourceName) throws IOException {
-		final File resourceFile = getTempResourceFile(resourceName);
+	public static File loadResource(final JavaPlugin plugin, final String resourceName) throws IOException {
+		final File resourceFile = getTempResourceFile(plugin, resourceName);
 
 		fastChannelCopy(Channels.newChannel(FileUtilities.class.getClassLoader().getResourceAsStream(resourceName)),
 			Channels.newChannel(new FileOutputStream(resourceFile)));
@@ -70,7 +70,7 @@ public enum FileUtilities {
 	}
 
 	public static String loadAndCacheResource(final JavaPlugin plugin, final String resourceName) throws IOException {
-		final File resourceFile = FileUtilities.loadResource(resourceName);
+		final File resourceFile = FileUtilities.loadResource(plugin, resourceName);
 		SpoutManager.getFileManager().addToCache(plugin, resourceFile);
 
 		return resourceFile.getPath();
