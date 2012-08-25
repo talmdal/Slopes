@@ -1,7 +1,7 @@
 /*
  * This file is part of slopes.
  *
- * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/>
+ * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/slopes/>
  * slopes is licensed under the GNU Lesser General Public License.
  * This version of slopes is derived from Kaevator's Superslopes (http://goo.gl/Rd7io)
  * and retsrif's original Spout port (https://github.com/retsrif/Slopes)
@@ -26,8 +26,11 @@ import org.getspout.spoutapi.block.design.GenericBlockDesign;
 import org.getspout.spoutapi.block.design.SubTexture;
 import org.getspout.spoutapi.block.design.Texture;
 
-import com.timalmdal.bukkit.slopes.util.QuadList;
+import com.timalmdal.bukkit.slopes.util.RotatedTextureOffset;
 import com.timalmdal.bukkit.slopes.util.SlopeSubTexture;
+import com.timalmdal.bukkit.utilities.blockdesign.Point;
+import com.timalmdal.bukkit.utilities.blockdesign.QuadDefinition;
+import com.timalmdal.bukkit.utilities.blockdesign.QuadList;
 
 public class SlopeBlockDesign extends GenericBlockDesign {
 
@@ -39,9 +42,35 @@ public class SlopeBlockDesign extends GenericBlockDesign {
 		setBoundingBox(.25f, 0f, .25f, .75f, .5f, .75f);
 		subTexture = texture.getSubTexture(slopeTexture.getTextureIndex());
 
-		setQuadNumber(quadList.size());
-		quadList.generate(this, subTexture);
+		generate(quadList);
 
 		setRenderPass(1);
+	}
+
+	public void generate(final QuadList quadList) {
+		setQuadNumber(quadList.size());
+
+		final int defaultOffset = RotatedTextureOffset.Default.getOffset();
+		for (final QuadDefinition quad : quadList) {
+			int order = 0;
+			final SubTexture sideTexture = defaultOffset == quad.getTextureOffset() ? subTexture : getSubTexture(quad.getTextureOffset());
+
+			for (final Point descriptor : quad) {
+				this.setVertex(descriptor.setOrder(order++).setQuad(quad.getQuadIndex()).generateVertex(sideTexture));
+			}
+		}
+	}
+
+	public SubTexture getSubTexture(final int textureOffset) {
+		final Texture texture = subTexture.getParent();
+
+		int index = textureOffset;
+		for (final SubTexture subtexture : texture.subTextures) {
+			if (subTexture.equals(subtexture)) {
+				break;
+			}
+			index++;
+		}
+		return texture.getSubTexture(index);
 	}
 }

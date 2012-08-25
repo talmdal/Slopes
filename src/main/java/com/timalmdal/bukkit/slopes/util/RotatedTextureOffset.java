@@ -1,7 +1,7 @@
 /*
  * This file is part of slopes.
  *
- * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/>
+ * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/slopes/>
  * slopes is licensed under the GNU Lesser General Public License.
  * This version of slopes is derived from Kaevator's Superslopes (http://goo.gl/Rd7io)
  * and retsrif's original Spout port (https://github.com/retsrif/Slopes)
@@ -21,45 +21,21 @@
  */
 package com.timalmdal.bukkit.slopes.util;
 
-import org.getspout.spoutapi.block.design.SubTexture;
-import org.getspout.spoutapi.block.design.Vertex;
+public enum RotatedTextureOffset {
 
-public class Point {
-	private final float x;
-	private final float y;
-	private final float z;
-	private int quad;
-	private int order;
+	Default(0),
+	Rotated(16),
+	Top(32),
+	Bottom(48);
 
-	public Point(final float x, final float y, final float z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	private int offset;
+
+	public int getOffset() {
+		return offset;
 	}
 
-	public float getX() {
-		return x;
+	private RotatedTextureOffset(final int offset) {
+		this.offset = offset;
 	}
 
-	public float getY() {
-		return y;
-	}
-
-	public float getZ() {
-		return z;
-	}
-
-	public Point setQuad(final int quadIndex) {
-		quad = quadIndex;
-		return this;
-	}
-
-	public Point setOrder(final int order) {
-		this.order = order;
-		return this;
-	}
-
-	public Vertex generateVertex(final SubTexture subTexture) {
-		return new Vertex(order, quad, x, y, z, subTexture);
-	}
 }

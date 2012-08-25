@@ -1,7 +1,7 @@
 /*
  * This file is part of slopes.
  *
- * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/>
+ * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/slopes/>
  * slopes is licensed under the GNU Lesser General Public License.
  * This version of slopes is derived from Kaevator's Superslopes (http://goo.gl/Rd7io)
  * and retsrif's original Spout port (https://github.com/retsrif/Slopes)
@@ -33,9 +33,9 @@ import org.getspout.spoutapi.material.block.GenericCustomBlock;
 
 import com.timalmdal.bukkit.slopes.SlopesPlugin;
 import com.timalmdal.bukkit.slopes.designers.SlopeBlockDesign;
-import com.timalmdal.bukkit.slopes.util.QuadList;
 import com.timalmdal.bukkit.slopes.util.SlopeSubTexture;
-import com.timalmdal.bukkit.slopes.util.Utilities;
+import com.timalmdal.bukkit.utilities.Utilities;
+import com.timalmdal.bukkit.utilities.blockdesign.QuadList;
 
 public abstract class AbstractBlock extends GenericCustomBlock implements Directional {
 

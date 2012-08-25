@@ -2,139 +2,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+	<relative-path>../../</relative-path>
+  </properties>
   
-  <groupId>com.timalmdal.bukkit</groupId>
   <artifactId>slopes</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>slopes</name>
-  <description>A refactoring of retsrif's port of Kaevator's  SuperSlopes MCP plugin</description>
-    <url>http://www.timalmdal.com</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dist.directory>../../minecraft_server/plugins</dist.directory>
-        <craftbukkitVersion>1.2.5-R4.1-SNAPSHOT</craftbukkitVersion>
-    </properties>
-
-    <build>
-        <defaultGoal>clean install</defaultGoal>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <targetPath>.</targetPath>
-                <filtering>false</filtering>
-                <directory>${basedir}</directory>
-                <includes>
-                    <include>LICENSE.txt</include>
-                    <include>README.md</include>
-                </includes>
-            </resource>
-            <resource>
-                <targetPath>.</targetPath>
-                <filtering>true</filtering>
-                <directory>${basedir}/src/main/resources</directory>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-            <!-- License headers check plugin -->
-            <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <version>1.10.b1</version>
-                <executions>
-                    <execution>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <quiet>true</quiet>
-                    <encoding>UTF-8</encoding>
-                    <strictCheck>true</strictCheck>
-                    <header>${basedir}/HEADER.txt</header>
-                    <keywords>
-                        <keyword>${project.name}</keyword>
-                        <keyword>license</keyword>
-                    </keywords>
-                    <mapping>
-                        <java>SLASHSTAR_STYLE</java>
-                    </mapping>
-                    <properties>
-                        <name>${project.name}</name>
-                        <url>${project.url}</url>
-                        <license>GNU Lesser General Public License</license>
-                        <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
-                        <copyright>Copyright (c) 2012, Tim Almdal</copyright>
-                    </properties>
-                    <includes>
-                        <include>src/main/java/**</include>
-                        <include>src/test/java/**</include>
-                    </includes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>package</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <tasks>
-                                <copy
-                                    file="${project.build.directory}/${project.artifactId}-${project.version}.jar"
-                                    tofile="${dist.directory}/${project.artifactId}.jar" overwrite="true" />
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    <dependencies>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>${craftbukkitVersion}</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>${craftbukkitVersion}</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.getspout</groupId>
-            <artifactId>spoutplugin</artifactId>
-            <version>dev-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-    <repositories>
-        <repository>
-            <id>spout-repo</id>
-            <url>http://repo.spout.org</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spout-plugins</id>
-            <url>http://repo.spout.org</url>
-        </pluginRepository>
-    </pluginRepositories>
+  <description>A refactoring of retsrif's port of Kaevator's SuperSlopes MCP plugin</description>
+  
+  <parent>
+    <groupId>com.timalmdal.bukkit</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../../</relativePath>
+  </parent>
+  
+  <dependencies>
+    <dependency>
+        <groupId>com.timalmdal.bukkit</groupId>
+        <artifactId>utilities</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>

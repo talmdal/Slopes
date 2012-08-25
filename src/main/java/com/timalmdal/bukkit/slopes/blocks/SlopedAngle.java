@@ -1,7 +1,7 @@
 /*
  * This file is part of slopes.
  *
- * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/>
+ * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/slopes/>
  * slopes is licensed under the GNU Lesser General Public License.
  * This version of slopes is derived from Kaevator's Superslopes (http://goo.gl/Rd7io)
  * and retsrif's original Spout port (https://github.com/retsrif/Slopes)
@@ -24,20 +24,20 @@ package com.timalmdal.bukkit.slopes.blocks;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.getspout.spoutapi.block.design.Texture;
 
-import com.timalmdal.bukkit.slopes.util.Point;
-import com.timalmdal.bukkit.slopes.util.QuadList;
 import com.timalmdal.bukkit.slopes.util.SlopeSubTexture;
-import com.timalmdal.bukkit.slopes.util.TextureOffset;
+import com.timalmdal.bukkit.slopes.util.RotatedTextureOffset;
+import com.timalmdal.bukkit.utilities.blockdesign.Point;
+import com.timalmdal.bukkit.utilities.blockdesign.QuadList;
 
 public final class SlopedAngle extends AbstractBlock {
 	static final QuadList QUAD_LIST = QuadList.quadBuilder()
-		.add(TextureOffset.Bottom,
+		.add(RotatedTextureOffset.Bottom.getOffset(),
 			new Point(0.0f, 0.0f, 1.0f), new Point(0.0f, 0.0f, 0.0f), new Point(1.0f, 0.0f, 0.0f), new Point(1.0f, 0.0f, 1.0f)) // bottom
 		.add(new Point(0.0f, 0.0f, 0.0f), new Point(0.0f, 1.0f, 0.0f), new Point(.001f, 1.0f, 0.0f), new Point(1.0f, 0.0f, 0.0f)) // north
 		.add(new Point(0.0f, 0.0f, 1.0f), new Point(0.0f, 1.0f, 0.001f), new Point(0.0f, 1.0f, 0.0f), new Point(0.0f, 0.0f, 0.0f)) // west
-		.add(TextureOffset.Top,
+		.add(RotatedTextureOffset.Top.getOffset(),
 			new Point(1.0f, 0.0f, 1.0f), new Point(0.0f, 1.0f, 0.0f), new Point(0.0f, 1.0f, 0.001f), new Point(0.0f, 0.0f, 1.0f)) // south
-		.add(TextureOffset.Top,
+		.add(RotatedTextureOffset.Top.getOffset(),
 			new Point(1.0f, 0.0f, 0.0f), new Point(0.001f, 1.0f, 0.0f), new Point(0.001f, 1.0f, 0.001f), new Point(1.0f, 0.0f, 1.0f)) // east
 	;
 

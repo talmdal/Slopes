@@ -1,7 +1,7 @@
 /*
  * This file is part of slopes.
  *
- * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/>
+ * Copyright (c) 2012, Tim Almdal <http://www.timalmdal.com/slopes/>
  * slopes is licensed under the GNU Lesser General Public License.
  * This version of slopes is derived from Kaevator's Superslopes (http://goo.gl/Rd7io)
  * and retsrif's original Spout port (https://github.com/retsrif/Slopes)
@@ -51,8 +51,8 @@ import com.timalmdal.bukkit.slopes.blocks.SlopedAngle;
 import com.timalmdal.bukkit.slopes.blocks.SlopedCeiling;
 import com.timalmdal.bukkit.slopes.blocks.SlopedFloor;
 import com.timalmdal.bukkit.slopes.blocks.Stairs;
-import com.timalmdal.bukkit.slopes.util.FileUtilities;
 import com.timalmdal.bukkit.slopes.util.SlopeSubTexture;
+import com.timalmdal.bukkit.utilities.file.FileUtilities;
 
 public class SlopesPlugin extends JavaPlugin {
 	private static final String TEXTURE_IMAGES = "Slopes.png";
@@ -97,7 +97,7 @@ public class SlopesPlugin extends JavaPlugin {
 			SpoutManager.getFileManager().removeFromCache(this, textureImagePath);
 			textureImagePath = null;
 		}
-		getLogger().info("[Slopes] disabled.");
+		getLogger().info("Slopes disabled.");
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class SlopesPlugin extends JavaPlugin {
 				SlantedCorner.class, CeilingSlantedCorner.class, SlopedAngle.class, CeilingAngle.class,
 				SlopedFloor.class, SlopedCeiling.class);
 
-			getLogger().info("[Slopes] enabled.");
+			getLogger().info("Slopes enabled.");
 		} catch (final IOException e) {
 			getLogger().log(Level.SEVERE, "Problem initializing textures for [Slopes]: ", e);
 		}
